@@ -38,45 +38,19 @@
             text-decoration: none;
         }
         .btn-launch:hover { background-color: #005a9e; }
-        #output {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 6px;
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
-            text-align: left;
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
 
     <div class="card">
         <h1>Castlewise App Service</h1>
-        <p>Click below to fetch the App Service.</p>
+        <p>Click below to open the App Service in a new tab.</p>
         
-        <button class="btn-launch" onclick="fetchMvcApp()">Access App Service</button>
-        <div id="output" style="display: none;"></div>
+        <!-- Opens the MVC app proxy route in a new browser tab -->
+        <a href="/api/Home/Index" target="_blank" class="btn-launch">
+            Access App Service
+        </a>
     </div>
-
-    <script>
-        async function fetchMvcApp() {
-            const out = document.getElementById('output');
-            out.style.display = 'block';
-            out.innerText = 'Connecting via proxy...';
-
-            try {
-                // SWA proxies calls to /api directly to the linked App Service
-                const res = await fetch('/api/Home/Index');
-                if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-                
-                const html = await res.text();
-                out.innerHTML = html; // Renders the MVC view content directly inside the card
-            } catch (err) {
-                out.innerText = `Error: ${err.message}`;
-            }
-        }
-    </script>
 
 </body>
 </html>
