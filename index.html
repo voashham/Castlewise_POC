@@ -23,81 +23,8 @@
             max-width: 450px;
             width: 100%;
         }
-        h1 {
-            color: #111827;
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
-        p {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
-        .btn-launch {
-            display: inline-block;
-            background-color: #0078d4;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: background-color 0.2s ease;
-        }
-        .btn-launch:hover {
-            background-color: #005a9e;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="card">
-        <h1>Castlewise App Service</h1>
-        <p>Click below to open the app service in your VNet environment.</p>
-        
-        <!-- Direct redirection link -->
-        <a href="https://app-castlewise-poc.azurewebsites.net" class="btn-launch">
-            Access App Service
-        </a>
-    </div>
-
-</body>
-</html>
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Castlewise Private App Launcher</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f3f4f6;
-        }
-        .card {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 450px;
-            width: 100%;
-        }
-        h1 {
-            color: #111827;
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
-        p {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
+        h1 { color: #111827; font-size: 24px; margin-bottom: 8px; }
+        p { color: #6b7280; font-size: 14px; margin-bottom: 24px; }
         .btn-launch {
             display: inline-block;
             background-color: #0078d4;
@@ -110,15 +37,10 @@
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
-        .btn-launch:hover {
-            background-color: #005a9e;
-        }
-        .btn-launch:disabled {
-            background-color: #a1a1aa;
-            cursor: not-allowed;
-        }
+        .btn-launch:hover { background-color: #005a9e; }
+        .btn-launch:disabled { background-color: #a1a1aa; cursor: not-allowed; }
         #output {
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 12px;
             border-radius: 6px;
             background-color: #f9fafb;
@@ -139,27 +61,25 @@
         <h1>Castlewise App Service</h1>
         <p>Click below to open the app service in your VNet environment.</p>
         
-        <!-- Calls backend proxy -->
-        <button id="launchBtn" class="btn-launch" onclick="fetchPrivateData()">Access App Service</button>
-        
+        <button id="launchBtn" class="btn-launch" onclick="fetchData()">Access App Service</button>
         <div id="output" style="display: none;"></div>
     </div>
 
     <script>
-        async function fetchPrivateData() {
+        async function fetchData() {
             const outputDiv = document.getElementById('output');
             const btn = document.getElementById('launchBtn');
 
             outputDiv.style.display = 'block';
-            outputDiv.innerText = 'Connecting to private App Service...';
+            outputDiv.innerText = 'Fetching data from App Service...';
             btn.disabled = true;
 
             try {
-                // SWA proxies this request via /api to your linked backend App Service
+                // Calls the proxy endpoint configured via Backend Link
                 const res = await fetch('/api');
                 
                 if (!res.ok) {
-                    throw new Error(`Server returned status ${res.status}: ${res.statusText}`);
+                    throw new Error(`Status ${res.status}: ${res.statusText}`);
                 }
                 
                 const data = await res.text();
@@ -173,4 +93,4 @@
     </script>
 
 </body>
-</html> -->
+</html>
