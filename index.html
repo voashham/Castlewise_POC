@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Castlewise Private App Launcher</title>
+    <title>Castlewise App Launcher</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -33,23 +33,50 @@
             font-weight: 600;
             padding: 12px 24px;
             border-radius: 6px;
+            border: none;
+            cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.2s ease;
         }
         .btn-launch:hover { background-color: #005a9e; }
+        #output {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
 
     <div class="card">
         <h1>Castlewise App Service</h1>
-        <p>Click below to open and navigate to the app service.</p>
+        <p>Click below to fetch the App Service.</p>
         
-        <!-- Redirects the browser window to the SWA proxy endpoint -->
-        <a href="/api" class="btn-launch">
-            Access App Service
-        </a>
+        <button class="btn-launch" onclick="fetchMvcApp()">Access App Service</button>
+        <div id="output" style="display: none;"></div>
     </div>
+
+    <script>
+        async function fetchMvcApp() {
+            const out = document.getElementById('output');
+            out.style.display = 'block';
+            out.innerText = 'Connecting via proxy...';
+
+            try {
+                // SWA proxies calls to /api directly to the linked App Service
+                const res = await fetch('/api');
+                if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                
+                const html = await res.text();
+                out.innerHTML = html; // Renders the MVC view content directly inside the card
+            } catch (err) {
+                out.innerText = `Error: ${err.message}`;
+            }
+        }
+    </script>
 
 </body>
 </html>
