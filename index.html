@@ -67,7 +67,7 @@
 
             try {
                 // SWA proxies calls to /api directly to the linked App Service
-                const res = await fetch('/api');
+                const res = await fetch('/api/Home/Index');
                 if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
                 
                 const html = await res.text();
