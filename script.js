@@ -12,7 +12,7 @@ const applications = {
 
     app3: {
         name: "Application 3",
-        url: "app-ai-200-demo-htf8h5dzbycth3dg.centralindia-01.azurewebsites.net"
+        url: "https://portal.azure.com/"
     }
 };
 
