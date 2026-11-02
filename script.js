@@ -7,7 +7,7 @@ const applications = {
 
     app2: {
         name: "Application 2",
-        url: "app-ai-200-demo-htf8h5dzbycth3dg.centralindia-01.azurewebsites.net"
+        url: "https://chatgpt.com/"
     },
 
     app3: {
