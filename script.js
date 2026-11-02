@@ -2,7 +2,7 @@
 const applications = {
     app1: {
         name: "Application 1",
-        url: "app-ai-200-demo-htf8h5dzbycth3dg.centralindia-01.azurewebsites.net"
+        url: "app-hello-world.azurewebsites.net"
     },
 
     app2: {
