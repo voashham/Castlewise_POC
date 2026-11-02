@@ -7,7 +7,7 @@ const applications = {
 
     app2: {
         name: "Application 2",
-        url: "https://chatgpt.com/"
+        url: "https://voashham.github.io/Castlewise_POC/"
     },
 
     app3: {
